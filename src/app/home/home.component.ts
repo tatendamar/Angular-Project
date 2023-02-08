@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   constructor(private userService: UserService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    this.userService.getPublicContent().subscribe({
+    this.userService.getUsers().subscribe({
       next: data => {
         console.log(data);
         this.content = data;

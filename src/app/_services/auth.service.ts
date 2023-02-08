@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import {environment} from "src/environments/environment";
 
-const AUTH_API = 'http://localhost:5000/api/v1/auth/';
+const AUTH_API = environment.url
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -15,7 +16,7 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   login(email: string, password: string): Observable<any> {
-    return this.http.post(AUTH_API + 'login', {
+    return this.http.post(`${AUTH_API}/login`, {
       email,
       password
     }, httpOptions);
@@ -32,7 +33,7 @@ export class AuthService {
    	occupation: string,
 	  address: string
   ): Observable<any> {
-    return this.http.post(AUTH_API + 'register', {
+    return this.http.post(`${AUTH_API}/register`, {
       username,
       email,
       password,

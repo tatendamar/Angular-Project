@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { TokenStorageService } from '../_services/token-storage.service';
-import { AuthService } from '../_services/auth.service';
-import { UserService } from '../_services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { TokenStorageService } from 'src/app/_services/token-storage.service';
+import { UserService } from 'src/app/_services/user.service';
 
 @Component({
   selector: 'app-profile',
@@ -52,7 +51,7 @@ export class ProfileComponent implements OnInit {
        this.toastr.success('Successfully edited user');
       },
       error: err => {
-        
+
         this.errorMessage = err.msg;
         this.isLoginFailed = true;
         this.toastr.error(err.msg)

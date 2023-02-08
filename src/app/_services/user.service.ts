@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
+import {environment} from "src/environments/environment";
 
-const API_URL = 'http://localhost:5000/api/v1/auth';
+const API_URL = environment.url
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -14,7 +15,7 @@ const httpOptions = {
 export class UserService {
   constructor(private http: HttpClient) { }
 
-  getPublicContent(): Observable<any> {
+  getUsers(): Observable<any> {
     return this.http.get(`${API_URL}/users`, httpOptions) .pipe(
       map(response => {
 

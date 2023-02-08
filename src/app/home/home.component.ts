@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../_services/user.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 
 @Component({
   selector: 'app-home',
@@ -10,6 +11,11 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class HomeComponent implements OnInit {
   content?: any;
+   currentPage = 1;
+  p: number = 1;
+  page?: number;
+
+
 
   constructor(private userService: UserService, private router: Router, private toastr: ToastrService) { }
 
@@ -49,6 +55,9 @@ export class HomeComponent implements OnInit {
 
   }
 
+   pageChanged(event: PageChangedEvent): void {
+    this.page = event.page;
+  }
   reloadPage(): void {
     window.location.reload();
   }

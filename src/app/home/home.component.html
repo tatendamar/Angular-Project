@@ -1,0 +1,32 @@
+<div class="container">
+  <header class="jumbotron">
+  </header>
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Gender</th>
+      <th scope="col">Registration Date</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody  *ngFor="let item of content.users">
+    <tr>
+      <th scope="row">1</th>
+      <td>{{item.first_name}}</td>
+      <td>{{item.last_name}}</td>
+      <td>{{item.gender}}</td>
+      <td>{{item.createdAt | date:'yyyy-MM-dd'}}</td>
+      <td>
+        <div class="d-grid gap-2 d-md-block">
+         <button class="btn btn-outline-primary mr-2" type="button" (click)="getUser(item.uuid)"><i class="fa fa-hand-pointer-o" aria-hidden="true"></i></button>
+         <button class="btn btn-outline-warning mr-2" type="button" (click)="editUser(item.uuid)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+         <button class="btn btn btn-outline-danger" type="button" (click)="deleteUser(item.uuid)"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+       </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>

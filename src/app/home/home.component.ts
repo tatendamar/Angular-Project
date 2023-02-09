@@ -11,19 +11,29 @@ import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 })
 export class HomeComponent implements OnInit {
   content?: any;
-  currentPage = 1;
-  p: number = 1;
-  page?: number;
+
+  itemsPerPage = 10;
+  totalItems: any
+  page : any = 0;
 
 
 
   constructor(private userService: UserService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    this.userService.getUsers().subscribe({
+    // this.page = 0 ? this.page : 1;
+    this.getUsers()
+  }
+
+  getUsers(){
+
+    this.userService.getUsers(this.page, this.itemsPerPage).subscribe({
       next: data => {
         console.log(data);
-        this.content = data;
+        this.content = data.users;
+         this.totalItems = data.users.totalItems;
+        //  this.itemsPerPage = data.users.totalPages;
+
       },
       error: err => {
         this.content = JSON.parse(err.error).message;
@@ -55,9 +65,12 @@ export class HomeComponent implements OnInit {
 
   }
 
-   pageChanged(event: PageChangedEvent): void {
-    this.page = event.page;
+   pageChanged(event: any): void {
+    this.page = event;
+    this.getUsers()
   }
+
+
   reloadPage(): void {
     window.location.reload();
   }

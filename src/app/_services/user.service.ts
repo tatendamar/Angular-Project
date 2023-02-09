@@ -15,8 +15,8 @@ const httpOptions = {
 export class UserService {
   constructor(private http: HttpClient) { }
 
-  getUsers(): Observable<any> {
-    return this.http.get(`${API_URL}/users`, httpOptions) .pipe(
+  getUsers(page: number, size: number): Observable<any> {
+    return this.http.get(`${API_URL}/users?page=${page}&size=${size}`, httpOptions) .pipe(
       map(response => {
 
 

@@ -11,7 +11,7 @@ import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 })
 export class HomeComponent implements OnInit {
   content?: any;
-   currentPage = 1;
+  currentPage = 1;
   p: number = 1;
   page?: number;
 

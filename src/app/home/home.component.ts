@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
 
 
 
+
   constructor(private userService: UserService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
@@ -26,6 +27,7 @@ export class HomeComponent implements OnInit {
   }
 
   getUsers(){
+
 
     this.userService.getUsers(this.page, this.itemsPerPage).subscribe({
       next: data => {
@@ -67,6 +69,12 @@ export class HomeComponent implements OnInit {
 
    pageChanged(event: any): void {
     this.page = event;
+    this.getUsers()
+  }
+
+   handlePageSizeChange(event: any): void {
+    this.itemsPerPage = event.target.value;
+    this.page = 1;
     this.getUsers()
   }
 

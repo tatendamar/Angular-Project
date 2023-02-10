@@ -5,8 +5,8 @@
 ### Clone the repo
 
 ```shell
-git clone hhttps://github.com/tatendamar/https://github.com/tatendamar/Angular-Project
-cd https://github.com/tatendamar/Angular-Project
+git clone https://github.com/tatendamar/https://github.com/tatendamar/Angular-Project
+cd Angular-Project
 ```
 
 ### Install npm packages

@@ -12,7 +12,12 @@
       <th scope="col">Action</th>
     </tr>
   </thead>
-  <tbody  *ngFor="let item of content.users | paginate: { itemsPerPage: itemsPerPage, currentPage: page, totalItems: totalItems }">
+  <tbody  *ngFor="let item of content.users | paginate: {
+    itemsPerPage: itemsPerPage,
+    currentPage: page,
+    totalItems: totalItems
+    }; let i = index"
+   >
     <tr>
       <th scope="row">1</th>
       <td>{{item.first_name}}</td>
@@ -29,5 +34,8 @@
     </tr>
   </tbody>
 </table>
-  <pagination-controls (pageChange)="pageChanged(page = $event)"></pagination-controls>
+  <pagination-controls
+      previousLabel="Prev"
+      nextLabel="Next"
+      (pageChange)="pageChanged(page = $event)"></pagination-controls>
 </div>

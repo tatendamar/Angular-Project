@@ -19,22 +19,23 @@ export class HomeComponent implements OnInit {
 
 
 
-  constructor(private userService: UserService, private router: Router, private toastr: ToastrService) { }
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private toastr: ToastrService
+    ) { }
 
   ngOnInit(): void {
-    // this.page = 0 ? this.page : 1;
     this.getUsers()
   }
 
   getUsers(){
-
 
     this.userService.getUsers(this.page, this.itemsPerPage).subscribe({
       next: data => {
         console.log(data);
         this.content = data.users;
          this.totalItems = data.users.totalItems;
-        //  this.itemsPerPage = data.users.totalPages;
 
       },
       error: err => {
@@ -69,12 +70,7 @@ export class HomeComponent implements OnInit {
 
    pageChanged(event: any): void {
     this.page = event;
-    this.getUsers()
-  }
 
-   handlePageSizeChange(event: any): void {
-    this.itemsPerPage = event.target.value;
-    this.page = 1;
     this.getUsers()
   }
 

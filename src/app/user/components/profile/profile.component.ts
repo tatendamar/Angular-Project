@@ -52,9 +52,9 @@ export class ProfileComponent implements OnInit {
       },
       error: err => {
 
-        this.errorMessage = err.msg;
+        this.errorMessage = err.error.msg;;
         this.isLoginFailed = true;
-        this.toastr.error(err.msg)
+        this.toastr.error(err.error.msg)
       }
     });
   }

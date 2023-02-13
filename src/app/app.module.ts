@@ -17,12 +17,11 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { AuthGuard } from './_helpers/authguard.service';
 import { UserModule } from './user/user.module';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    RegisterComponent,
     HomeComponent,
   ],
   imports: [
@@ -33,7 +32,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     HttpClientModule,
     ToastrModule.forRoot(),
     PaginationModule.forRoot(),
-    NgxPaginationModule
+    NgxPaginationModule,
+    AuthModule
   ],
   providers: [authInterceptorProviders, AuthGuard],
   bootstrap: [AppComponent]

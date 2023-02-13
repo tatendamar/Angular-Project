@@ -5,7 +5,13 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
+import { RouterModule } from '@angular/router';
 
+
+const routes = [
+  { path: 'profile/:uuid', component: ProfileComponent },
+  { path: 'admin/:uuid', component: BoardAdminComponent }
+]
 
 
 @NgModule({
@@ -16,6 +22,7 @@ import { ToastrModule } from 'ngx-toastr';
   imports: [
     CommonModule,
     FormsModule,
+     RouterModule.forChild(routes),
     HttpClientModule,
     ToastrModule.forRoot()
   ]

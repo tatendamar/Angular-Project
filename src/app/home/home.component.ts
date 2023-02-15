@@ -35,7 +35,6 @@ export class HomeComponent implements OnInit {
         console.log(data);
         this.content = data.users;
          this.totalItems = data.users.totalItems;
-
       },
       error: err => {
         this.content = JSON.parse(err.error).message;
@@ -52,14 +51,17 @@ export class HomeComponent implements OnInit {
   }
 
   deleteUser(uuid: string){
+
+
     this.userService.deleteUser(uuid).subscribe({
         next: data => {
           this.toastr.warning('User deleted successfully');
+          window.location.reload();
           return data;
 
       },
       error: err => {
-        this.content = JSON.parse(err.error).message;
+        this.content = JSON.parse(err.error).msg;
       }
     });
 

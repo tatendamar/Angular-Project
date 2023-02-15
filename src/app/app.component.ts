@@ -3,6 +3,8 @@ import { TokenStorageService } from './_services/token-storage.service';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { isLoggedInSelector } from './auth/+state/auth.selectors';
+import { Router } from '@angular/router';
+import { AuthStateInterface } from './auth/types/authState.interface';
 
 @Component({
   selector: 'app-root',
@@ -18,10 +20,18 @@ export class AppComponent {
 
    isLoggedIn$: Observable<boolean>;
 
-  constructor(private tokenStorageService: TokenStorageService,  private store: Store) { }
+  constructor(private tokenStorageService: TokenStorageService,  private store: Store<AuthStateInterface>,  private router: Router) { }
 
   ngOnInit(): void {
-this.isLoggedIn$ = this.store.pipe(select(isLoggedInSelector));
+
+       this.isLoggedIn$ = this.store.pipe(select(isLoggedInSelector));
+
+       if(this.isLoggedIn$){
+          this.isLoggedIn = !!this.tokenStorageService.getToken();
+           this.router.navigate(['/home'])
+       }
+
+
   }
 
   logout(): void {

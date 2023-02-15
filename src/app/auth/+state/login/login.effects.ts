@@ -35,7 +35,7 @@ this.actions$.pipe(
   ofType(AuthActions.loginSuccessAction),
   tap(() => {
     this.router.navigateByUrl('/home');
-    this.toastr.success('User registered successfully');
+    this.toastr.success('User logged successfully');
   })
 ),
 {dispatch: false}

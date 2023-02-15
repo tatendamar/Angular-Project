@@ -10,8 +10,6 @@ import { ProfileComponent } from './user/components/profile/profile.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate:[AuthGuard]},
-
-
   { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];
 

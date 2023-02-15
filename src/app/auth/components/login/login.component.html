@@ -1,4 +1,4 @@
-<div class="col-md-12">
+<div class="col-md-6 offset-md-3 col-xs-12">
   <div class="card card-container">
     <img
       id="profile-img"
@@ -6,7 +6,7 @@
       class="profile-img-card"
     />
     <form
-      *ngIf="!isLoggedIn"
+
       name="form"
       (ngSubmit)="f.form.valid && onSubmit()"
       #f="ngForm"
@@ -58,13 +58,13 @@
         </button>
       </div>
       <div class="form-group">
-        <div
+        <!-- <div
           class="alert alert-danger"
           role="alert"
-          *ngIf="f.submitted && isLoginFailed"
+          *ngIf="f.submitted"
         >
-          Login failed: {{ errorMessage }}
-        </div>
+          Login failed: {{ backendErrors$ | async }}
+        </div> -->
       </div>
     </form>
 
@@ -78,7 +78,7 @@
         </button>
       </div>
      <div class="card-body">
-      <a routerLink="/home" href="/home" class="btn btn-warning">Go to Home</a>
+      <a [routerLink]="['/home']" class="btn btn-warning">Go to Home</a>
      </div>
    </div>
     </div>

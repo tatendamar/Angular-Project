@@ -30,7 +30,6 @@ export class HomeComponent implements OnInit {
   }
 
   getUsers(){
-
     this.userService.getUsers(this.page, this.itemsPerPage).subscribe({
       next: data => {
         console.log(data);
@@ -55,7 +54,6 @@ export class HomeComponent implements OnInit {
   deleteUser(uuid: string){
     this.userService.deleteUser(uuid).subscribe({
         next: data => {
-          this.reloadPage();
           this.toastr.warning('User deleted successfully');
           return data;
 
@@ -75,7 +73,7 @@ export class HomeComponent implements OnInit {
   }
 
 
-  reloadPage(): void {
-    window.location.reload();
-  }
+  // reloadPage(): void {
+  //   window.location.reload();
+  // }
 }

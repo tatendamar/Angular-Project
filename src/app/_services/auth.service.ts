@@ -1,7 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import {environment} from "src/environments/environment";
+import { CurrentUserInterface } from '../shared/types/currentUser.interface';
+import { RegisterRequestInterface } from '../auth/types/registerRequest.interface';
+import { AuthResponseInterface } from '../auth/types/authResponse.interface';
+import { TokenStorageService } from './token-storage.service';
+import { LoginRequestInterface } from '../auth/types/login/loginRequest.interface';
 
 const AUTH_API = environment.url
 
@@ -13,37 +18,25 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,  private tokenStorage: TokenStorageService,){ }
 
-  login(email: string, password: string): Observable<any> {
-    return this.http.post(`${AUTH_API}/login`, {
-      email,
-      password
-    }, httpOptions);
+  login(data: LoginRequestInterface): Observable<AuthResponseInterface> {
+    return this.http.post<AuthResponseInterface>(`${AUTH_API}/login`, data, httpOptions).pipe(
+      map((response:  AuthResponseInterface) => {
+        this.tokenStorage.saveToken(response.token);
+      return response
+      })
+    )
   }
 
-  register(
-    username: string,
-    email: string,
-    password: string,
-    first_name: string,
-    last_name: string,
-    gender: string,
-    hobbies: string,
-   	occupation: string,
-	  address: string
-  ): Observable<any> {
-    return this.http.post(`${AUTH_API}/register`, {
-      username,
-      email,
-      password,
-      first_name,
-      last_name,
-      gender,
-      hobbies,
-      occupation,
-      address
-    }, httpOptions);
+  register(data: RegisterRequestInterface): Observable<AuthResponseInterface> {
+    return this.http.post<AuthResponseInterface>(`${AUTH_API}/register`, data, httpOptions).pipe(
+     map((response:  AuthResponseInterface) => {
+        this.tokenStorage.saveToken(response.token);
+      return response
+     }
+     )
+    )
   }
 
   isLoggedIn(){

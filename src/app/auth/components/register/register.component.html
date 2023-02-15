@@ -1,4 +1,4 @@
-<div class="col-md-12">
+<div class="col-md-6 offset-md-3 col-xs-12">
   <div class="card card-container">
     <img
       id="profile-img"
@@ -6,7 +6,6 @@
       class="profile-img-card"
     />
     <form
-      *ngIf="!isSuccessful"
       name="form"
       (ngSubmit)="f.form.valid && onSubmit()"
       #f="ngForm"
@@ -201,13 +200,10 @@
         <button class="btn btn-primary btn-block">Sign Up</button>
       </div>
 
-      <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
-        Signup failed!<br />{{ errorMessage }}
+      <div class="alert alert-warning" *ngIf="f.submitted">
+        Signup failed!<br />{{ backendErrors$ | async }}
       </div>
+      <p class="text-xs-center"> <a [routerLink]="['/login']">Have an account?</a></p>
     </form>
-
-    <div class="alert alert-success" *ngIf="isSuccessful">
-      Your registration is successful!
-    </div>
   </div>
 </div>

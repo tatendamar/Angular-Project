@@ -6,6 +6,10 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { RouterModule } from '@angular/router';
+import { StoreModule } from '@ngrx/store';
+import * as fromUser from './+state/user/user.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { UserEffects } from './+state/user/user.effects';
 
 
 const routes = [
@@ -24,7 +28,9 @@ const routes = [
     FormsModule,
      RouterModule.forChild(routes),
     HttpClientModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    StoreModule.forFeature(fromUser.userFeatureKey, fromUser.reducers),
+    EffectsModule.forFeature([UserEffects])
   ]
 })
 export class UserModule { }

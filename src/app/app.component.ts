@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { TokenStorageService } from './_services/token-storage.service';
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { isLoggedInSelector } from './auth/+state/auth.selectors';
 
 @Component({
   selector: 'app-root',
@@ -8,25 +11,20 @@ import { TokenStorageService } from './_services/token-storage.service';
 })
 export class AppComponent {
   private roles: string[] = [];
-  isLoggedIn = false;
+  isLoggedIn: any;
   showAdminBoard = false;
   showModeratorBoard = false;
   username?: string;
 
-  constructor(private tokenStorageService: TokenStorageService) { }
+   isLoggedIn$: Observable<boolean>;
+
+  constructor(private tokenStorageService: TokenStorageService,  private store: Store) { }
 
   ngOnInit(): void {
-    this.isLoggedIn = !!this.tokenStorageService.getToken();
-
-    if (this.isLoggedIn) {
-      const user = this.tokenStorageService.getUser();
-      this.roles = user.roles;
-      this.username = user.username;
-    }
+this.isLoggedIn$ = this.store.pipe(select(isLoggedInSelector));
   }
 
   logout(): void {
     this.tokenStorageService.signOut();
-    window.location.reload();
   }
 }

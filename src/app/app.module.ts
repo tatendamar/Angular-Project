@@ -28,14 +28,12 @@ import { environment } from 'src/environments/environment';
   ],
   imports: [
     BrowserAnimationsModule,
-    UserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
     ToastrModule.forRoot(),
     PaginationModule.forRoot(),
     NgxPaginationModule,
-    AuthModule,
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({

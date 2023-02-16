@@ -26,7 +26,7 @@ const routes = [
   imports: [
     CommonModule,
     FormsModule,
-     RouterModule.forChild(routes),
+    RouterModule.forChild(routes),
     HttpClientModule,
     ToastrModule.forRoot(),
     StoreModule.forFeature(fromUser.userFeatureKey, fromUser.reducers),

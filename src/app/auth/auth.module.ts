@@ -26,9 +26,8 @@ const routes = [
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes),
-    BrowserAnimationsModule,
     FormsModule,
+    RouterModule.forChild(routes),
     HttpClientModule,
     StoreModule.forFeature(fromAuth.authFeatureKey, fromAuth.reducers),
     EffectsModule.forFeature([AuthEffects, LoginEffects]),

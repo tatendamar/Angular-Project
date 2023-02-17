@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
 
   itemsPerPage = 10;
   totalItems: any
-  page : any = 0;
+  page : any = 1;
 
 
 
@@ -30,7 +30,10 @@ export class HomeComponent implements OnInit {
   }
 
   getUsers(){
-    this.userService.getUsers(this.page, this.itemsPerPage).subscribe({
+    const offset = (this.page - 1)
+
+
+    this.userService.getUsers(offset, this.itemsPerPage).subscribe({
       next: data => {
         console.log(data);
         this.content = data.users;
